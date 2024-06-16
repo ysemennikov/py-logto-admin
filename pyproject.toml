@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "py-logto-admin"
+name = "logto-admin"
 version = "1.0.0"
 description = "Python client for Logto Management API"
 license = "MIT"
