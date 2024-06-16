@@ -1,0 +1,164 @@
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..models.get_api_applications_id_protected_app_metadata_custom_domains_response_200_item_status import (
+    GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemStatus,
+)
+
+if TYPE_CHECKING:
+    from ..models.get_api_applications_id_protected_app_metadata_custom_domains_response_200_item_cloudflare_data_type_0 import (
+        GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0,
+    )
+    from ..models.get_api_applications_id_protected_app_metadata_custom_domains_response_200_item_dns_records_item import (
+        GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemDnsRecordsItem,
+    )
+
+
+T = TypeVar("T", bound="GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200Item")
+
+
+@_attrs_define
+class GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200Item:
+    """
+    Attributes:
+        domain (str):
+        status (GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemStatus):
+        error_message (Union[None, str]):
+        dns_records (List['GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemDnsRecordsItem']):
+        cloudflare_data
+            (Union['GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0', None]):
+    """
+
+    domain: str
+    status: GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemStatus
+    error_message: Union[None, str]
+    dns_records: List["GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemDnsRecordsItem"]
+    cloudflare_data: Union[
+        "GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0", None
+    ]
+    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        from ..models.get_api_applications_id_protected_app_metadata_custom_domains_response_200_item_cloudflare_data_type_0 import (
+            GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0,
+        )
+
+        domain = self.domain
+
+        status = self.status.value
+
+        error_message: Union[None, str]
+        error_message = self.error_message
+
+        dns_records = []
+        for dns_records_item_data in self.dns_records:
+            dns_records_item = dns_records_item_data.to_dict()
+            dns_records.append(dns_records_item)
+
+        cloudflare_data: Union[Dict[str, Any], None]
+        if isinstance(
+            self.cloudflare_data,
+            GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0,
+        ):
+            cloudflare_data = self.cloudflare_data.to_dict()
+        else:
+            cloudflare_data = self.cloudflare_data
+
+        field_dict: Dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "domain": domain,
+                "status": status,
+                "errorMessage": error_message,
+                "dnsRecords": dns_records,
+                "cloudflareData": cloudflare_data,
+            }
+        )
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.get_api_applications_id_protected_app_metadata_custom_domains_response_200_item_cloudflare_data_type_0 import (
+            GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0,
+        )
+        from ..models.get_api_applications_id_protected_app_metadata_custom_domains_response_200_item_dns_records_item import (
+            GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemDnsRecordsItem,
+        )
+
+        d = src_dict.copy()
+        domain = d.pop("domain")
+
+        status = GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemStatus(d.pop("status"))
+
+        def _parse_error_message(data: object) -> Union[None, str]:
+            if data is None:
+                return data
+            return cast(Union[None, str], data)
+
+        error_message = _parse_error_message(d.pop("errorMessage"))
+
+        dns_records = []
+        _dns_records = d.pop("dnsRecords")
+        for dns_records_item_data in _dns_records:
+            dns_records_item = (
+                GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemDnsRecordsItem.from_dict(
+                    dns_records_item_data
+                )
+            )
+
+            dns_records.append(dns_records_item)
+
+        def _parse_cloudflare_data(
+            data: object,
+        ) -> Union["GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0", None]:
+            if data is None:
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                cloudflare_data_type_0 = (
+                    GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0.from_dict(
+                        data
+                    )
+                )
+
+                return cloudflare_data_type_0
+            except:  # noqa: E722
+                pass
+            return cast(
+                Union["GetApiApplicationsIdProtectedAppMetadataCustomDomainsResponse200ItemCloudflareDataType0", None],
+                data,
+            )
+
+        cloudflare_data = _parse_cloudflare_data(d.pop("cloudflareData"))
+
+        get_api_applications_id_protected_app_metadata_custom_domains_response_200_item = cls(
+            domain=domain,
+            status=status,
+            error_message=error_message,
+            dns_records=dns_records,
+            cloudflare_data=cloudflare_data,
+        )
+
+        get_api_applications_id_protected_app_metadata_custom_domains_response_200_item.additional_properties = d
+        return get_api_applications_id_protected_app_metadata_custom_domains_response_200_item
+
+    @property
+    def additional_keys(self) -> List[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties
