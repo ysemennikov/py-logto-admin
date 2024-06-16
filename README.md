@@ -1,11 +1,16 @@
 # logto-admin
 Python client for Logto Management API.
 
-## Features:
+## What It Does:
 
-- Using all the latest and greatest Python features like type annotations and dataclasses.
-- Having documentation and usage instructions as docstrings
-- Utilizes the [openapi-python-client](https://github.com/openapi-generators/openapi-python-client), this means that the client is generated from the [Logto OpenAPI Specification](https://openapi.logto.io/operation/operation-get-api-swagger-json)
+The [py-logto-admin](https://github.com/ysemennikov/py-logto-admin) client allows you to interact with the Logto Management API seamlessly, making it easier to integrate Logto's authentication and user management features into your Python applications.
+
+## Key Features:
+
+- Asynchronous Support: Fully supports asynchronous operations.
+- Modern Python: Utilizes the latest Python features, including type annotations and dataclasses, for enhanced code clarity and robustness.
+- Comprehensive Documentation: Includes thorough documentation and usage instructions directly within the docstrings.
+- Built on top of the OpenAPI Spec: Built using the [openapi-python-client](https://github.com/openapi-generators/openapi-python-client), which means the client is generated from the [Logto OpenAPI Specification](https://openapi.logto.io/operation/operation-get-api-swagger-json).
 
 ## Installation
 
