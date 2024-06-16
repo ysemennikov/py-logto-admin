@@ -1,11 +1,15 @@
 [tool.poetry]
-name = "logto-admin"
-version = "0.117.4"
+name = "py-logto-admin"
+version = "1.0.0"
 description = "Python client for Logto Management API"
+license = "MIT"
 authors = [
     "Iaroslav Semennikov <ysmnnkv@gmail.com>",
 ]
 readme = "README.md"
+homepage = "https://github.com/ysemennikov/py-logto-admin"
+repository = "https://github.com/ysemennikov/py-logto-admin"
+documentation = "https://github.com/ysemennikov/py-logto-admin#logto-admin"
 packages = [
     {include = "logto_admin"},
 ]

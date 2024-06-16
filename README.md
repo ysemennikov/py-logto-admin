@@ -1,5 +1,16 @@
-# logto-admin
+# py-logto-admin
 Python client for Logto Management API.
+
+## Table of Contents
+
+- [What It Does](#what-it-does)
+- [Key Features](#key-features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Compatibility with Logto API](#compatibility-with-logto-api)
+- [Advanced Usage](#advanced-usage)
+  - [Client Customization](#client-customization)
+  - [SSL](#ssl)
 
 ## What It Does:
 
@@ -65,36 +76,6 @@ async def create_user():
         )
 ```
 
-By default, when you're calling an HTTPS API it will attempt to verify that SSL is working correctly. Using certificate verification is highly recommended most of the time, but sometimes you may need to authenticate to a server (especially an internal server) using a custom certificate bundle.
-
-```python
-class LogtoAdmin(logto_admin.AuthenticatedClient):
-    """Logto Management API client"""
-
-    def __init__(self) -> None:
-        super().__init__(
-            base_url="https://[tenant_id].logto.app/api",
-            token=token_manager.token_info["access_token"],
-            prefix=token_manager.token_info["token_type"],
-            verify_ssl="/path/to/certificate_bundle.pem",
-        )
-```
-
-You can also disable certificate validation altogether, but beware that **this is a security risk**.
-
-```python
-class LogtoAdmin(logto_admin.AuthenticatedClient):
-    """Logto Management API client"""
-
-    def __init__(self) -> None:
-        super().__init__(
-            base_url="https://[tenant_id].logto.app/api",
-            token=token_manager.token_info["access_token"],
-            prefix=token_manager.token_info["token_type"],
-            verify_ssl=False,
-        )
-```
-
 Things to know:
 1. Every path/method combo becomes a Python module with two functions:
     1. `asyncio`: Request that returns parsed data (if successful) or `None`
@@ -104,11 +85,13 @@ Things to know:
 1. If the endpoint had any tags on it, the first tag will be used as a module name for the function.
 1. Any endpoint which did not have a tag will be in `logto_admin.api.default`
 
-## Versioning
+## Compatibility with Logto API
 
-Current version is `0.117.*` - based on Logto 1.17.
+The Compatibility Table and more detailed info here: [Docs / Versioning](./docs/versioning.md)
 
-## Advanced customizations
+## Advanced usage
+
+### Client customization
 
 There are more settings on the generated `Client` class which let you control more runtime behavior, check out the docstring on that class for more info. You can also customize the underlying `httpx.AsyncClient`:
 
@@ -141,4 +124,36 @@ client = Client(
 )
 # Note that base_url needs to be re-set, as would any shared cookies, headers, etc.
 client.set_httpx_client(httpx.AsyncClient(base_url="https://api.example.com", proxies="http://localhost:8030"))
+```
+
+### SSL
+
+By default, when you're calling an HTTPS API it will attempt to verify that SSL is working correctly. Using certificate verification is highly recommended most of the time, but sometimes you may need to authenticate to a server (especially an internal server) using a custom certificate bundle.
+
+```python
+class LogtoAdmin(logto_admin.AuthenticatedClient):
+    """Logto Management API client"""
+
+    def __init__(self) -> None:
+        super().__init__(
+            base_url="https://[tenant_id].logto.app/api",
+            token=token_manager.token_info["access_token"],
+            prefix=token_manager.token_info["token_type"],
+            verify_ssl="/path/to/certificate_bundle.pem",
+        )
+```
+
+You can also disable certificate validation altogether, but beware that **this is a security risk**.
+
+```python
+class LogtoAdmin(logto_admin.AuthenticatedClient):
+    """Logto Management API client"""
+
+    def __init__(self) -> None:
+        super().__init__(
+            base_url="https://[tenant_id].logto.app/api",
+            token=token_manager.token_info["access_token"],
+            prefix=token_manager.token_info["token_type"],
+            verify_ssl=False,
+        )
 ```
