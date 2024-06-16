@@ -12,9 +12,6 @@ on:
   release:
     types: [published]
 
-permissions:
-  contents: read
-
 jobs:
   publish-service-client-package:
     runs-on: ubuntu-latest
