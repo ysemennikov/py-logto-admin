@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "logto-admin"
-version = "0.117.3"
+version = "0.117.4"
 description = "Python client for Logto Management API"
 authors = [
     "Iaroslav Semennikov <ysmnnkv@gmail.com>",

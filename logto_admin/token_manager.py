@@ -1,5 +1,6 @@
 import asyncio
 from base64 import b64encode
+from typing import Dict
 
 from httpx import AsyncClient, AsyncHTTPTransport, HTTPStatusError
 
@@ -16,12 +17,12 @@ class TokenManager:
         self.logto_endpoint = logto_endpoint
         self.m2m_app_id = m2m_app_id
         self.m2m_app_secret = m2m_app_secret
-        self.token_info: dict[str, str] = {
+        self.token_info: Dict[str, str] = {
             "token_type": "",
             "access_token": "",
         }
 
-    async def fetch_token_info(self) -> dict:
+    async def fetch_token_info(self) -> Dict:
         """Fetches token info from Logto."""
         async with AsyncClient(
             transport=AsyncHTTPTransport(retries=10),
