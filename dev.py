@@ -39,6 +39,9 @@ def generate(url: str):
         ],
         check=False,
     )
+    with open("./logto_admin/py.typed", "w", encoding="utf-8") as f:
+        f.write("# Marker file for PEP 561")
+
     copy_from_src()
 
 
