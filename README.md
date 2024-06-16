@@ -1,6 +1,22 @@
 # logto-admin
 Python client for Logto Management API.
 
+## Features:
+
+- Using all the latest and greatest Python features like type annotations and dataclasses.
+- Having documentation and usage instructions as docstrings
+- Utilizes the [openapi-python-client](https://github.com/openapi-generators/openapi-python-client), this means that the client is generated from the [Logto OpenAPI Specification](https://openapi.logto.io/operation/operation-get-api-swagger-json)
+
+## Installation
+
+```bash
+# pip
+pip install logto-admin
+
+# poetry
+poetry add logto-admin
+```
+
 ## Usage
 
 ```python
@@ -82,6 +98,10 @@ Things to know:
 1. All path/query params, and bodies become method arguments.
 1. If the endpoint had any tags on it, the first tag will be used as a module name for the function.
 1. Any endpoint which did not have a tag will be in `logto_admin.api.default`
+
+## Versioning
+
+Current version is `0.117.*` - based on Logto 1.17.
 
 ## Advanced customizations
 
